@@ -1,0 +1,90 @@
+{
+  "actorSpecification": 1,
+  "title": "Generation request summary",
+  "description": "One item per run: who asked for what, how the previous version was found, and the billing decision of the delivery.",
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Requests",
+      "description": "The request and its outcome.",
+      "transformation": {
+        "fields": [
+          "status",
+          "requestId",
+          "actorName",
+          "requestType",
+          "customerUserId",
+          "customerRunId",
+          "tier",
+          "billingLabel",
+          "complexityScore",
+          "changedRatio",
+          "zipBytes",
+          "zipFiles",
+          "generatedActorVersion",
+          "submittedAt",
+          "finishedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "status": { "label": "Status", "format": "text" },
+          "requestId": { "label": "Request ID", "format": "text" },
+          "actorName": { "label": "Actor", "format": "text" },
+          "requestType": { "label": "Request", "format": "text" },
+          "customerUserId": { "label": "Customer", "format": "text" },
+          "customerRunId": { "label": "Customer run", "format": "text" },
+          "tier": { "label": "Tier", "format": "text" },
+          "billingLabel": { "label": "Billing", "format": "text" },
+          "complexityScore": { "label": "Complexity", "format": "number" },
+          "changedRatio": { "label": "Changed ratio", "format": "number" },
+          "zipBytes": { "label": "ZIP size (bytes)", "format": "number" },
+          "zipFiles": { "label": "Files", "format": "number" },
+          "generatedActorVersion": { "label": "Version", "format": "text" },
+          "submittedAt": { "label": "Submitted", "format": "date" },
+          "finishedAt": { "label": "Finished", "format": "date" }
+        }
+      }
+    },
+    "previous": {
+      "title": "Revision details",
+      "description": "How the previous version was located and verified for updates and fixes.",
+      "transformation": {
+        "fields": [
+          "requestId",
+          "actorName",
+          "revision",
+          "problemReported",
+          "failedRunId",
+          "previousLookup",
+          "previousSource",
+          "previousIntegrity",
+          "previousGeneratorRunId",
+          "previousCustomerRunId",
+          "previousLookupError",
+          "warrantyAnchorAt",
+          "billingReasons"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "requestId": { "label": "Request ID", "format": "text" },
+          "actorName": { "label": "Actor", "format": "text" },
+          "revision": { "label": "Revision", "format": "boolean" },
+          "problemReported": { "label": "Problem report", "format": "boolean" },
+          "failedRunId": { "label": "Failed run", "format": "text" },
+          "previousLookup": { "label": "Found via", "format": "text" },
+          "previousSource": { "label": "ZIP source", "format": "text" },
+          "previousIntegrity": { "label": "Integrity", "format": "text" },
+          "previousGeneratorRunId": { "label": "Previous request", "format": "text" },
+          "previousCustomerRunId": { "label": "Previous customer run", "format": "text" },
+          "previousLookupError": { "label": "Lookup error", "format": "text" },
+          "warrantyAnchorAt": { "label": "Warranty from", "format": "date" },
+          "billingReasons": { "label": "Billing reasons", "format": "text" }
+        }
+      }
+    }
+  }
+}

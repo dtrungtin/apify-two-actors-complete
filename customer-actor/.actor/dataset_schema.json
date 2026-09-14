@@ -1,0 +1,43 @@
+{
+  "actorSpecification": 1,
+  "title": "Actor generation result",
+  "description": "One item per run: the outcome of the request, the download link of the generated Actor ZIP and what was charged.",
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Result",
+      "description": "Outcome of this generation request.",
+      "transformation": {
+        "fields": [
+          "status",
+          "actorName",
+          "requestType",
+          "zipUrl",
+          "zipBytes",
+          "generatedActorVersion",
+          "chargeLabel",
+          "chargedUsd",
+          "requestId",
+          "finishedAt",
+          "message"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "status": { "label": "Status", "format": "text" },
+          "actorName": { "label": "Actor", "format": "text" },
+          "requestType": { "label": "Request", "format": "text" },
+          "zipUrl": { "label": "Actor ZIP", "format": "link" },
+          "zipBytes": { "label": "ZIP size (bytes)", "format": "number" },
+          "generatedActorVersion": { "label": "Version", "format": "text" },
+          "chargeLabel": { "label": "Billing", "format": "text" },
+          "chargedUsd": { "label": "Charged (USD)", "format": "number" },
+          "requestId": { "label": "Request ID", "format": "text" },
+          "finishedAt": { "label": "Finished", "format": "date" },
+          "message": { "label": "Message", "format": "text" }
+        }
+      }
+    }
+  }
+}

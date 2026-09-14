@@ -1,0 +1,74 @@
+{
+  "title": "Generator request",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "actorName": {
+      "title": "Actor name",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Requested name of the generated Actor (forwarded from the customer Actor)."
+    },
+    "requirements": {
+      "title": "Requirements",
+      "type": "string",
+      "editor": "textarea",
+      "description": "What the generated Actor should do, as written by the customer. For a revision, the change the customer wants."
+    },
+    "language": {
+      "title": "Language/runtime",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Preferred implementation language/runtime, e.g. JavaScript, TypeScript, Python."
+    },
+    "notes": {
+      "title": "Notes",
+      "type": "string",
+      "editor": "textarea",
+      "description": "Optional additional information from the customer for the generator."
+    },
+    "previousZipUrl": {
+      "title": "Previous Actor ZIP URL (revision)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Set by the customer Actor for a revision: URL of the previous Actor's ZIP, normally a key-value store record in this account that the customer Actor uploaded. It is downloaded, checked and copied into this run as PREVIOUS_ACTOR_ZIP."
+    },
+    "previousZipSha256": {
+      "title": "Previous ZIP SHA-256 (revision)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Set by the customer Actor: SHA-256 of the ZIP at previousZipUrl, used to detect a corrupted transfer."
+    },
+    "previousGeneratorRunId": {
+      "title": "Previous generator run (revision)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Set by the customer Actor for a revision: the run of this Actor that produced the previous Actor. Used to verify the ZIP against the original delivery and as a fallback source when previousZipUrl is absent."
+    },
+    "previousCustomerRunId": {
+      "title": "Previous customer run (revision)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Set by the customer Actor for a revision: the customer's earlier run that delivered the previous Actor."
+    },
+    "previousActorName": {
+      "title": "Previous Actor name (revision)",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Set by the customer Actor for a revision: the Actor name used in the previous request."
+    },
+    "problemReport": {
+      "title": "Problem report (fix request)",
+      "type": "object",
+      "editor": "json",
+      "description": "Set by the customer Actor when the customer reports a failure of an Actor they received: errorLog (tail of the failed run's log), errorLogTruncated, errorLogChars, failedRunInput (input that failed), failedRunId, reportedAt. Stored with the request so the fix can reproduce the failure."
+    },
+    "customerContext": {
+      "title": "Customer context",
+      "type": "object",
+      "editor": "json",
+      "description": "Metadata added by the customer Actor, such as its run ID, the customer's user ID and submission time."
+    }
+  },
+  "required": ["actorName", "requirements"]
+}

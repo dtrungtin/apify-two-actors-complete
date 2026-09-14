@@ -1,0 +1,21 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Generated Actor",
+  "properties": {
+    "generatedActorZip": {
+      "type": "string",
+      "title": "Generated Actor ZIP",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/GENERATED_ACTOR_ZIP"
+    },
+    "output": {
+      "type": "string",
+      "title": "Output metadata",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    },
+    "result": {
+      "type": "string",
+      "title": "Result (dataset)",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

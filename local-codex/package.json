@@ -1,0 +1,23 @@
+{
+  "name": "local-codex",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Local Codex tooling: fetch a generation request from a Generator Actor run, scaffold/generate/validate/zip the Actor, and upload the ZIP back.",
+  "scripts": {
+    "fetch": "node src/fetch-request.js",
+    "scaffold": "node src/scaffold.js",
+    "generate": "node src/generate.js",
+    "validate": "node src/validate.js",
+    "zip": "node src/package-zip.js",
+    "upload": "node src/upload-zip.js",
+    "pipeline": "node src/pipeline.js",
+    "selftest": "node scripts/selftest-kvs.mjs",
+    "reproduce": "node src/reproduce.js",
+    "cloud-test": "node src/cloud-test.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "apify-client": "^2.25.0"
+  }
+}

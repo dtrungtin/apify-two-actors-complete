@@ -1,0 +1,12 @@
+{
+  "name": "generator-actor",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "apify": "^3.4.4"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Generate an Apify Actor",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "actorName": {
+      "title": "Actor name",
+      "type": "string",
+      "description": "Requested name of the generated Actor. If one of your earlier successful runs of this Actor used the same name, this run is treated as a revision of that Actor: describe only the change in Requirements.",
+      "editor": "textfield"
+    },
+    "requirements": {
+      "title": "Requirements",
+      "type": "string",
+      "description": "Describe what the generated Actor should do. For a revision (same Actor name as an earlier run), describe only the change you want, or the problem to fix.",
+      "editor": "textarea"
+    },
+    "language": {
+      "title": "Preferred language/runtime",
+      "type": "string",
+      "description": "Optional implementation preference, e.g. JavaScript, TypeScript, Python.",
+      "default": "JavaScript",
+      "editor": "textfield"
+    },
+    "notes": {
+      "title": "Additional notes",
+      "type": "string",
+      "description": "Optional additional information for the generator.",
+      "editor": "textarea"
+    },
+    "errorLog": {
+      "sectionCaption": "Report a problem with an Actor you received",
+      "sectionDescription": "If an Actor generated for you earlier fails, keep the same Actor name above, describe the problem in Requirements, and attach the evidence here. The fix is delivered as a new version. Please remove secrets such as tokens, cookies or passwords before pasting.",
+      "title": "Error log",
+      "type": "string",
+      "description": "The error message or the last part of the failed run's log. The failed run's status message is a good start.",
+      "editor": "textarea"
+    },
+    "failedRunInput": {
+      "title": "Input of the failed run",
+      "type": "object",
+      "description": "The exact input you used when the Actor failed, so the problem can be reproduced. Copy it from the failed run's Input tab (JSON view).",
+      "editor": "json"
+    },
+    "failedRunId": {
+      "title": "Failed run ID",
+      "type": "string",
+      "description": "Optional reference to the failed run in your account (run ID or Console URL).",
+      "editor": "textfield"
+    }
+  },
+  "required": ["actorName", "requirements"]
+}

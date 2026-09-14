@@ -1,0 +1,26 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Generator result",
+  "properties": {
+    "generatedActorZip": {
+      "type": "string",
+      "title": "Generated Actor ZIP",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/GENERATED_ACTOR_ZIP"
+    },
+    "generationRequest": {
+      "type": "string",
+      "title": "Generation request",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/GENERATION_REQUEST"
+    },
+    "output": {
+      "type": "string",
+      "title": "Output metadata",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    },
+    "result": {
+      "type": "string",
+      "title": "Request summary (dataset)",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

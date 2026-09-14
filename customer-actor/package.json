@@ -1,0 +1,13 @@
+{
+  "name": "customer-actor",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "apify": "^3.4.4",
+    "apify-client": "^2.20.0"
+  }
+}

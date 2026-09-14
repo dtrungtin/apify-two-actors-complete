@@ -1,0 +1,14 @@
+{
+  "actorSpecification": 1,
+  "name": "{{ACTOR_NAME}}",
+  "title": "{{ACTOR_TITLE}}",
+  "description": "{{ACTOR_DESCRIPTION}}",
+  "version": "0.1",
+  "buildTag": "latest",
+  "meta": {
+    "generatedBy": "local-codex",
+    "generatorRunId": "{{GENERATOR_RUN_ID}}",
+    "generatedAt": "{{GENERATED_AT}}"
+  },
+  "input": "./input_schema.json"
+}

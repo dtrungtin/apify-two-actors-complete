@@ -1,0 +1,35 @@
+{
+  "title": "{{ACTOR_TITLE}} input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs",
+      "type": "array",
+      "description": "URLs the Actor should visit first.",
+      "editor": "requestListSources",
+      "prefill": [
+        {
+          "url": "https://example.com"
+        }
+      ]
+    },
+    "maxResults": {
+      "title": "Maximum results",
+      "type": "integer",
+      "description": "Stop after this many items have been saved to the dataset. Use 0 for no limit.",
+      "editor": "number",
+      "default": 100,
+      "minimum": 0
+    },
+    "proxyConfiguration": {
+      "title": "Proxy configuration",
+      "type": "object",
+      "description": "Proxy settings used for outgoing requests.",
+      "editor": "proxy"
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

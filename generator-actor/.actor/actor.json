@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "generator-actor",
+  "title": "Actor Generator - Generator Actor",
+  "description": "Stores the generation request and waits for a manually operated Local Codex process to upload the generated Actor ZIP.",
+  "version": "1.0",
+  "defaultMemoryMbytes": 128,
+  "minMemoryMbytes": 128,
+  "maxMemoryMbytes": 128,
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

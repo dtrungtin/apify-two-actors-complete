@@ -1,0 +1,8 @@
+node_modules/
+storage/
+apify_storage/
+local-codex/work/*
+!local-codex/work/.gitkeep
+*.zip
+.env
+npm-debug.log

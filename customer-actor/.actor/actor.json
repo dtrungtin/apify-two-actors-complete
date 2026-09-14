@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "customer-actor",
+  "title": "Actor Generator - Customer Actor",
+  "description": "Submits an Actor generation request to the private generator Actor, waits for completion, and copies the generated ZIP into this run's KVS.",
+  "version": "1.0",
+  "defaultMemoryMbytes": 128,
+  "minMemoryMbytes": 128,
+  "maxMemoryMbytes": 128,
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}
