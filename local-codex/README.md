@@ -70,7 +70,9 @@ The upload step decides the billing tier by itself (`src/billing.js`) and prints
   from the archive meta or the delivery index; free deliveries carry the anchor forward, billable ones reset it, and
   records without the field count from their upload date);
   billed like a new Actor when 40% or more of functional lines changed or 2 or more source files were added;
-  otherwise `revision`.
+  otherwise `revision`. Result schemas (`.actor/dataset_schema.json`, `.actor/output_schema.json`) are left out of
+  the changed-lines ratio, because a long schema says nothing about how much code changed; a revision that changes
+  only them is still billed as `revision` (never free, never a major update).
 
 The measurements (complexity signals, changed lines, changed ratio, previous delivery date) are stored in
 `GENERATED_ACTOR_META.billing`, and the customer Actor charges the matching event and shows the label to the

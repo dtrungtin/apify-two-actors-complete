@@ -31,6 +31,10 @@ const SECRET_NAME = /(password|passwd|cookie|session|login|credential|api[_-]?ke
 const SOURCE_EXT = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.py']);
 const TEXT_EXT = new Set([...SOURCE_EXT, '.json', '.txt', '.yml', '.yaml', '.toml', '.sh']);
 const NON_FUNCTIONAL = new Set(['README.md', 'CHANGELOG.md', 'package-lock.json', '.actor/actor.json', '.actorignore', '.gitignore']);
+// Schemas that only describe the results (field types, table views, output links). Changing them is billable work,
+// but their size says nothing about the code change, so they never count towards the changed-lines ratio: a long
+// dataset schema must not turn a small update into a "major update".
+const RESULT_SCHEMAS = new Set(['.actor/dataset_schema.json', '.actor/output_schema.json']);
 
 function readJsonSafe(file) {
     try {
@@ -182,36 +186,43 @@ export function measureChange(previousZipPath, actorDir) {
     const addedFiles = [];
     const removedFiles = [];
     const modifiedFiles = [];
+    const schemaFilesChanged = [];
     let changedLines = 0;
     let totalLines = 0;
 
     for (const [rel, text] of next) {
-        totalLines += countLines(text);
-        if (!previous.has(rel)) {
-            addedFiles.push(rel);
-            changedLines += countLines(text);
-        } else if (previous.get(rel) !== text) {
-            modifiedFiles.push(rel);
-            changedLines += changedLinesBetween(previous.get(rel), text);
+        const changed = !previous.has(rel) || previous.get(rel) !== text;
+        if (!previous.has(rel)) addedFiles.push(rel);
+        else if (changed) modifiedFiles.push(rel);
+
+        if (RESULT_SCHEMAS.has(rel)) {
+            if (changed) schemaFilesChanged.push(rel);
+            continue;
         }
+        totalLines += countLines(text);
+        if (!previous.has(rel)) changedLines += countLines(text);
+        else if (changed) changedLines += changedLinesBetween(previous.get(rel), text);
     }
     for (const [rel, text] of previous) {
         if (!next.has(rel)) {
             removedFiles.push(rel);
-            changedLines += countLines(text);
+            if (RESULT_SCHEMAS.has(rel)) schemaFilesChanged.push(rel);
+            else changedLines += countLines(text);
         }
     }
 
     const changedRatio = totalLines > 0 ? Math.min(1, changedLines / totalLines) : (changedLines > 0 ? 1 : 0);
     const addedSourceFiles = addedFiles.filter(isSourceFile).length;
     return {
-        functionalChange: changedLines > 0,
+        // A result-schema change alone is still a billable change (a revision), just never a major one.
+        functionalChange: changedLines > 0 || schemaFilesChanged.length > 0,
         changedLines,
         totalLines,
         changedRatio: Number(changedRatio.toFixed(3)),
         addedFiles,
         removedFiles,
         modifiedFiles,
+        schemaFilesChanged,
         major: changedRatio >= MAJOR_CHANGE_RATIO || addedSourceFiles >= MAJOR_ADDED_SOURCE_FILES,
     };
 }
@@ -279,8 +290,11 @@ export function decideTier({ isRevision, hasProblemReport, warrantyAnchorAt, com
         ]);
     }
 
-    reasons.push(change
-        ? `update: ${Math.round(change.changedRatio * 100)}% of functional lines changed (${change.changedLines} of ${change.totalLines})`
-        : 'update of an existing Actor (previous code not available for comparison)');
+    if (!change) reasons.push('update of an existing Actor (previous code not available for comparison)');
+    else if (change.changedLines === 0) reasons.push('update: only result schemas changed');
+    else reasons.push(`update: ${Math.round(change.changedRatio * 100)}% of functional lines changed (${change.changedLines} of ${change.totalLines})`);
+    if (change?.schemaFilesChanged?.length) {
+        reasons.push(`result schemas changed, not counted in the ratio: ${change.schemaFilesChanged.join(', ')}`);
+    }
     return { tier: 'revision', event: TIER_EVENTS.revision, label: 'update of an existing Actor', reasons };
 }

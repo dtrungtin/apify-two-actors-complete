@@ -143,7 +143,9 @@ How it works:
   | Revision whose code, schema and dependencies are unchanged (only docs, comments, version) | free | none |
   | Problem report within 7 days of the last billable delivery | free (warranty) | none |
   | Revision changing 40% or more of functional lines, or adding 2 or more source files | like a new Actor, by complexity | standard or advanced event |
-  | Any other revision (including problem reports after the warranty) | revision | `actor-revision` |
+  | Any other revision (including problem reports after the warranty, and changes to only the dataset or output schema) | revision | `actor-revision` |
+
+  Result schemas (`.actor/dataset_schema.json`, `.actor/output_schema.json`) do not count towards the 40% ratio.
 
   Complexity score: browser automation (Playwright, Puppeteer, browser crawlers) 2 points; authentication or secret
   inputs 1; 500 or more functional source lines 1; 8 or more input fields 1; third-party service integrations

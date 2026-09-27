@@ -165,7 +165,7 @@ export async function uploadZip(runId, { zipPath: explicitZip, kvsId, force = fa
             reasons: decision.reasons,
             overridden: decision.overridden,
             complexity: decision.complexity ? { score: decision.complexity.score, level: decision.complexity.level, signals: decision.complexity.signals, sourceLines: decision.complexity.sourceLines, inputFields: decision.complexity.inputFields } : null,
-            change: decision.change ? { functionalChange: decision.change.functionalChange, changedRatio: decision.change.changedRatio, changedLines: decision.change.changedLines, totalLines: decision.change.totalLines, addedFiles: decision.change.addedFiles, removedFiles: decision.change.removedFiles, modifiedFiles: decision.change.modifiedFiles, major: decision.change.major } : null,
+            change: decision.change ? { functionalChange: decision.change.functionalChange, changedRatio: decision.change.changedRatio, changedLines: decision.change.changedLines, totalLines: decision.change.totalLines, addedFiles: decision.change.addedFiles, removedFiles: decision.change.removedFiles, modifiedFiles: decision.change.modifiedFiles, schemaFilesChanged: decision.change.schemaFilesChanged, major: decision.change.major } : null,
             previousDeliveredAt: decision.previousDeliveredAt ?? null,
             previousWarrantyAnchorAt: decision.previousWarrantyAnchorAt ?? null,
             warrantyAnchorAt: decision.warrantyAnchorAt ?? null,
